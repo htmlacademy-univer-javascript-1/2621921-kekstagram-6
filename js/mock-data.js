@@ -49,3 +49,8 @@ export const pictures = [
     ]
   }
 ];
+    description: 'Описание фотографии 3',
+    likes: 93,
+    comments: 7
+  },
+];
