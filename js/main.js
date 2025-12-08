@@ -54,5 +54,46 @@ const generatePhotos = () => Array.from({length: 25}, createPhoto);
 // Создаем массив фотографий
 const photos = generatePhotos();
 
+// Функции для отрисовки миниатюр
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const picturesContainer = document.querySelector('.pictures');
+
+const createThumbnail = (data) => {
+  const thumbnail = pictureTemplate.cloneNode(true);
+
+  const image = thumbnail.querySelector('.picture__img');
+  image.src = data.url;
+  image.alt = data.description;
+
+  thumbnail.querySelector('.picture__likes').textContent = data.likes;
+  thumbnail.querySelector('.picture__comments').textContent = data.comments.length;
+
+  return thumbnail;
+};
+
+const renderThumbnails = (photosData) => {
+  const fragment = document.createDocumentFragment();
+
+  photosData.forEach((photo) => {
+    const thumbnail = createThumbnail(photo);
+    fragment.appendChild(thumbnail);
+  });
+
+  picturesContainer.appendChild(fragment);
+};
+
+// Отображение фотографий при загрузке страницы
+const renderPhotos = () => {
+  renderThumbnails(photos);
+};
+
+// Инициализация
+const init = () => {
+  renderPhotos();
+};
+
+// Запуск при полной загрузке DOM
+document.addEventListener('DOMContentLoaded', init);
+
 // Для отладки выводим в консоль
 console.log(photos);
