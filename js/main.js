@@ -1,6 +1,10 @@
-import { generatePhotos } from './photo.js';
+import { generatePhotos } from './data.js';
 
 const photos = generatePhotos();
-console.log('Сгенерированные фотографии:', photos);
 
 export { photos };
+
+import { renderThumbnails } from './thumbnails.js';
+import { pictures } from './mock-data.js';
+
+renderThumbnails(pictures);

@@ -1,45 +1,41 @@
-// Функция для проверки длины строки
-// Сравнивает количество символов в строке с заданным ограничением
+
 function checkStringLength(string, maxLength) {
-  // Возвращаем результат сравнения длины строки с максимальным значением
   return string.length <= maxLength;
 }
 
-// Функция для проверки строки на палиндром
-// Палиндром - это строка, которая читается одинаково в обоих направлениях
 function isPalindrome(string) {
-  // Приводим строку к нижнему регистру и удаляем все пробелы
-  const cleanString = string.toLowerCase().replaceAll(' ', '');
-  // Разбиваем строку на массив символов, переворачиваем и собираем обратно
-  const reversedString = cleanString.split('').reverse().join('');
-  // Сравниваем очищенную строку с перевернутой версией
-  return cleanString === reversedString;
+  const normalizedString = string.replaceAll(' ', '').toLowerCase();
+
+  let reversedString = '';
+
+  for (let i = normalizedString.length - 1; i >= 0; i--) {
+    reversedString += normalizedString[i];
+  }
+
+  return normalizedString === reversedString;
 }
 
-// Функция для извлечения чисел из текстовой строки
-// Находит все цифры и объединяет их в одно целое число
-function extractNumber(string) {
-  // Преобразуем входные данные в строковый формат для обработки
-  const textString = String(string);
-  // Удаляем все символы, которые не являются цифрами
-  const numberString = textString.replace(/\D/g, '');
-  // Если найдены цифры, преобразуем в число, иначе возвращаем NaN
-  return numberString ? parseInt(numberString, 10) : NaN;
+export { checkStringLength, isPalindrome };
+
+function isMeetingWithinWorkHours(workStart, workEnd, meetingStart, meetingDuration) {
+
+  function timeToMinutes(time) {
+    const [hours, minutes] = time.split(':').map(Number);
+    return hours * 60 + minutes;
+  }
+
+  const workStartMinutes = timeToMinutes(workStart);
+  const workEndMinutes = timeToMinutes(workEnd);
+  const meetingStartMinutes = timeToMinutes(meetingStart);
+
+  const meetingEndMinutes = meetingStartMinutes + meetingDuration;
+
+  return meetingStartMinutes >= workStartMinutes &&
+         meetingEndMinutes <= workEndMinutes;
 }
 
-// Проверка работы функции проверки длины строки
-console.log('Тест длины строки:');
-console.log('Короткая строка:', checkStringLength('пример текста', 15));
-console.log('Длинная строка:', checkStringLength('очень длинный пример текста', 10));
-
-// Проверка работы функции палиндрома
-console.log('Тест палиндромов:');
-console.log('Простой палиндром:', isPalindrome('топот'));
-console.log('Палиндром с пробелами:', isPalindrome('а роза упала на лапу азора'));
-console.log('Не палиндром:', isPalindrome('простая строка'));
-
-// Проверка работы функции извлечения чисел
-console.log('Тест извлечения чисел:');
-console.log('Текст с числами:', extractNumber('заказ номер 12345'));
-console.log('Текст без чисел:', extractNumber('текст без цифр'));
-console.log('С дробным числом:', extractNumber('цена 99.99 рублей'));
+isMeetingWithinWorkHours('08:00', '17:30', '14:00', 90); // true
+isMeetingWithinWorkHours('8:0', '10:0', '8:0', 120);     // true
+isMeetingWithinWorkHours('08:00', '14:30', '14:00', 90); // false
+isMeetingWithinWorkHours('14:00', '17:30', '08:0', 90);  // false
+isMeetingWithinWorkHours('8:00', '17:30', '08:00', 900); // false
