@@ -1,24 +1,29 @@
-const picturesContainer = document.querySelector('.pictures');
-const pictureTemplate = document
-  .querySelector('#picture')
-  .content
-  .querySelector('.picture');
+import { openPictureModal } from './big-picture.js';
 
-export const renderThumbnails = (data) => {
+const picturesContainerElement = document.querySelector('.pictures');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+
+const renderMiniatures = (photos) => {
   const fragment = document.createDocumentFragment();
 
-  data.forEach(({ url, description, likes, comments }) => {
+  photos.forEach((photo) => {
     const pictureElement = pictureTemplate.cloneNode(true);
 
-    const img = pictureElement.querySelector('.picture__img');
-    img.src = url;
-    img.alt = description;
+    const pictureImage = pictureElement.querySelector('.picture__img');
+    pictureImage.src = photo.url;
+    pictureImage.alt = photo.description;
 
-    pictureElement.querySelector('.picture__likes').textContent = likes;
-    pictureElement.querySelector('.picture__comments').textContent = comments;
+    pictureElement.querySelector('.picture__likes').textContent = photo.likes;
+    pictureElement.querySelector('.picture__comments').textContent = photo.comments.length;
+
+    pictureElement.addEventListener('click', () => {
+      openPictureModal(photo);
+    });
 
     fragment.appendChild(pictureElement);
   });
 
-  picturesContainer.appendChild(fragment);
+  picturesContainerElement.appendChild(fragment);
 };
+
+export { renderMiniatures };
