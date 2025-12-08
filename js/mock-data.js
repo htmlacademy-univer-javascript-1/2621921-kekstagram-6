@@ -1,4 +1,4 @@
-const picturesData = [
+export const pictures = [
   {
     id: 1,
     url: 'photos/1.jpg',
@@ -49,5 +49,3 @@ const picturesData = [
     ]
   }
 ];
-
-export { picturesData };
