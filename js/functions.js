@@ -3,7 +3,6 @@ function checkStringLength(string, maxLength) {
   return string.length <= maxLength;
 }
 
-
 function isPalindrome(string) {
   const normalizedString = string.replaceAll(' ', '').toLowerCase();
 
@@ -35,8 +34,8 @@ function isMeetingWithinWorkHours(workStart, workEnd, meetingStart, meetingDurat
          meetingEndMinutes <= workEndMinutes;
 }
 
-isMeetingWithinWorkHours('08:00', '17:30', '14:00', 90);
-isMeetingWithinWorkHours('8:0', '10:0', '8:0', 120);
-isMeetingWithinWorkHours('08:00', '14:30', '14:00', 90);
-isMeetingWithinWorkHours('14:00', '17:30', '08:0', 90);
-isMeetingWithinWorkHours('8:00', '17:30', '08:00', 900);
+isMeetingWithinWorkHours('08:00', '17:30', '14:00', 90); // true
+isMeetingWithinWorkHours('8:0', '10:0', '8:0', 120);     // true
+isMeetingWithinWorkHours('08:00', '14:30', '14:00', 90); // false
+isMeetingWithinWorkHours('14:00', '17:30', '08:0', 90);  // false
+isMeetingWithinWorkHours('8:00', '17:30', '08:00', 900); // false
