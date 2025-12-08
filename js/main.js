@@ -8,3 +8,4 @@ import { renderThumbnails } from './thumbnails.js';
 import { pictures } from './mock.js';
 
 renderThumbnails(pictures);
+
