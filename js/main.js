@@ -1,14 +1,16 @@
-import { generatePhotos } from './data.js';
-
-const photos = generatePhotos();
-
-export { photos };
-
-import { renderThumbnails } from './thumbnails.js';
-import { pictures } from './mock-data.js';
-
-renderThumbnails(pictures);
-import { picturesData } from './mock.js';
 import { renderMiniatures } from './thumbnails.js';
+import { getData } from './api.js';
+import { showAlert } from './util.js';
+import { setupForm } from './modules/form.js';
+import * as validationModule from './modules/validation.js';
+import * as effectsModule from './modules/scale-effect.js';
 
-renderMiniatures(picturesData);
+setupForm(validationModule, effectsModule);
+
+getData()
+  .then((pictures) => {
+    renderMiniatures(pictures);
+  })
+  .catch((err) => {
+    showAlert(err.message);
+  });
