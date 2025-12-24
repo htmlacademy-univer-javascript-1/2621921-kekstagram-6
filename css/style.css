@@ -158,6 +158,12 @@ main {
   border-radius: 2px;
 }
 
+.img-filters__button:hover {
+  color: #232321;
+  background-color: #ffffff;
+  opacity: 1;
+}
+
 .img-filters__label {
   padding: 5px 15px;
 
