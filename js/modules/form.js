@@ -2,6 +2,8 @@ import { sendData } from '../api.js';
 import { showSuccessMessage, showErrorMessage } from './messages.js';
 import { isEscapeKey } from '../util.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+
 const bodyElement = document.body;
 const uploadForm = document.querySelector('.img-upload__form');
 const fileInput = uploadForm.querySelector('.img-upload__input');
@@ -10,6 +12,8 @@ const cancelBtn = uploadForm.querySelector('.img-upload__cancel');
 const submitBtn = uploadForm.querySelector('.img-upload__submit');
 const commentInput = uploadForm.querySelector('.text__description');
 const hashtagInput = uploadForm.querySelector('.text__hashtags');
+const photoPreview = uploadForm.querySelector('.img-upload__preview img');
+const effectsPreviews = uploadForm.querySelectorAll('.effects__preview');
 
 let validationInstance;
 let effectsModuleRef;
@@ -57,6 +61,18 @@ function clearForm() {
 }
 
 function onFileChange() {
+  const file = fileInput.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    photoPreview.src = URL.createObjectURL(file);
+    effectsPreviews.forEach((preview) => {
+      preview.style.backgroundImage = `url(${photoPreview.src})`;
+    });
+  }
+
   showEditForm();
 }
 
