@@ -81,7 +81,7 @@ function initValidation(formElement) {
     successClass: 'img-upload__field-wrapper--valid',
     errorTextParent: 'img-upload__field-wrapper',
     errorTextTag: 'div',
-    errorTextClass: 'img-upload__error'
+    errorTextClass: 'pristine-error'
   });
 
   pristine.addValidator(
@@ -95,6 +95,14 @@ function initValidation(formElement) {
     checkComment,
     `Комментарий не должен превышать ${COMMENT_MAX_LENGTH} символов`
   );
+
+  // Add event listener to clear errors on input
+  const inputs = formElement.querySelectorAll('.text__hashtags, .text__description');
+  inputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      pristine.validate(input);
+    });
+  });
 
   return pristine;
 }

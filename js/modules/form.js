@@ -81,7 +81,7 @@ function onCancelClick() {
 }
 
 function onFieldKeydown(event) {
-  if (isEscapeKey(event)) {
+  if (event && isEscapeKey(event)) {
     event.stopPropagation();
   }
 }
@@ -91,7 +91,7 @@ function handleDocumentKeydown(event) {
     return;
   }
 
-  if (isEscapeKey(event) && !event.target.matches('.text__description, .text__hashtags')) {
+  if (event && isEscapeKey(event) && !event.target.matches('.text__description, .text__hashtags')) {
     hideEditForm();
   }
 }
