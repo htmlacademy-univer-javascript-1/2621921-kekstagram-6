@@ -74,7 +74,7 @@ function handleDocumentKeydown(event) {
   if (document.querySelector('.error')) {
     return;
   }
-  
+
   if (isEscapeKey(event) && !event.target.matches('.text__description, .text__hashtags')) {
     hideEditForm();
   }
