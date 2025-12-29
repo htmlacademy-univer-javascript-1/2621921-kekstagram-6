@@ -23,15 +23,15 @@ const SubmitButtonText = {
   SENDING: 'Публикую...'
 };
 
-const blockSubmitButton = () => {
+function blockSubmitButton() {
   submitBtn.disabled = true;
   submitBtn.textContent = SubmitButtonText.SENDING;
-};
+}
 
-const unblockSubmitButton = () => {
+function unblockSubmitButton() {
   submitBtn.disabled = false;
   submitBtn.textContent = SubmitButtonText.IDLE;
-};
+}
 
 function showEditForm() {
   editForm.classList.remove('hidden');

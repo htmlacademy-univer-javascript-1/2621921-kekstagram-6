@@ -1,3 +1,5 @@
+import { isEscapeKey } from '../util.js';
+
 const pageBody = document.body;
 
 function openModal(modalElement) {
@@ -15,7 +17,7 @@ function closeModal(modalElement) {
 }
 
 function handleKeydown(event) {
-  if (event.key === 'Escape') {
+  if (isEscapeKey(event)) {
     const openModalElement = document.querySelector('.modal:not(.hidden)');
     if (openModalElement) {
       closeModal(openModalElement);
