@@ -1,3 +1,5 @@
+import { isEscapeKey } from './util.js';
+
 const COMMENTS_PER_PORTION = 5;
 
 let commentsShown = 0;
@@ -93,7 +95,7 @@ function closePictureModal() {
 }
 
 function onEscapeKeydown(event) {
-  if (event.key === 'Escape') {
+  if (isEscapeKey(event)) {
     closePictureModal();
   }
 }

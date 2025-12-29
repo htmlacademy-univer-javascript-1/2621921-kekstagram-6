@@ -3,17 +3,17 @@ import { isEscapeKey } from '../util.js';
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 
-const showMessage = (template, closeButtonClass) => {
+function showMessage(template, closeButtonClass) {
   const messageElement = template.cloneNode(true);
   document.body.append(messageElement);
 
   const closeButton = messageElement.querySelector(closeButtonClass);
 
-  const closeMessage = () => {
+  function closeMessage() {
     messageElement.remove();
     document.removeEventListener('keydown', onDocumentKeydown);
     document.removeEventListener('click', onDocumentClick);
-  };
+  }
 
   function onDocumentKeydown(evt) {
     if (isEscapeKey(evt)) {
@@ -30,9 +30,14 @@ const showMessage = (template, closeButtonClass) => {
 
   document.addEventListener('keydown', onDocumentKeydown);
   document.addEventListener('click', onDocumentClick);
-};
+}
 
-const showSuccessMessage = () => showMessage(successTemplate, '.success__button');
-const showErrorMessage = () => showMessage(errorTemplate, '.error__button');
+function showSuccessMessage() {
+  showMessage(successTemplate, '.success__button');
+}
+
+function showErrorMessage() {
+  showMessage(errorTemplate, '.error__button');
+}
 
 export { showSuccessMessage, showErrorMessage };

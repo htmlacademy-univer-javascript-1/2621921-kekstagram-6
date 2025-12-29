@@ -3,7 +3,7 @@ import { openPictureModal } from './big-picture.js';
 const picturesContainerElement = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const renderMiniatures = (photos) => {
+function renderMiniatures(photos) {
   const existingPictures = picturesContainerElement.querySelectorAll('.picture');
   existingPictures.forEach((picture) => picture.remove());
 
@@ -27,6 +27,6 @@ const renderMiniatures = (photos) => {
   });
 
   picturesContainerElement.appendChild(fragment);
-};
+}
 
 export { renderMiniatures };

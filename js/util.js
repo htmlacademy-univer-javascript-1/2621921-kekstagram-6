@@ -1,15 +1,17 @@
-const getRandomInteger = (min, max) => {
+function getRandomInteger(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
-};
+}
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+function getRandomArrayElement(elements) {
+  return elements[getRandomInteger(0, elements.length - 1)];
+}
 
 const ALERT_SHOW_TIME = 5000;
 
-const showAlert = (message) => {
+function showAlert(message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
@@ -29,9 +31,11 @@ const showAlert = (message) => {
   setTimeout(() => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
-};
+}
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
+function isEscapeKey(evt) {
+  return evt.key === 'Escape';
+}
 
 function debounce (callback, timeoutDelay = 500) {
   let timeoutId;
